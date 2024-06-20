@@ -1,6 +1,9 @@
+import os
 import numpy as np
 import uuid
 from datetime import date, timedelta
+
+file_path = os.path.dirname(__file__)
 
 
 def random_first_name():
@@ -8,10 +11,9 @@ def random_first_name():
     open first-names.txt file and returns a first name
     :return: first name
     """
-    # Ensure reproducibility of measurements
-    with open(
-        "~/employee-management-api/fake_data/first-names.txt", "r"
-    ) as f:
+    # open text file
+    text_path = os.path.join(file_path, "../fake_data/first-names.txt")
+    with open(text_path, "r") as f:
         names = f.readlines()
         first_name = np.random.choice(names).strip()
     return first_name
@@ -22,10 +24,9 @@ def random_last_name() -> str:
     open last-names.txt file and returns a last name
     :return: last name
     """
-
-    with open(
-        "~/employee-management-api/fake_data/last-names.txt", "r"
-    ) as f:
+    # open text file
+    text_path = os.path.join(file_path, "../fake_data/last-names.txt")
+    with open(text_path, "r") as f:
         names = f.readlines()
         last_name = np.random.choice(names).strip()
     return last_name
