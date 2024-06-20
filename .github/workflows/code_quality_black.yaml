@@ -1,9 +1,7 @@
 name: check_code_quality_with_black
 on:
-  push:
-    branches : [ "developement" ]
   pull_request:
-    branches : [ "main" ]
+    branches : [ "developement","main" ]
 jobs :
   black:
     runs-on: ubuntu-20.04

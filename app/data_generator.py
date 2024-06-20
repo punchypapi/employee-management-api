@@ -43,6 +43,7 @@ def random_date() -> date:
 
 
 list_department = ["HR", "IT", "SALE", "MARKETING"]
+list_seniority = ["Junior", "Confirmed", "Senior", "Director Partner"]
 
 
 class Employee:
@@ -56,23 +57,36 @@ class Employee:
         self.id = uuid.uuid4()
         self.first_name = random_first_name()
         self.last_name = random_last_name()
+        self.full_name = f"{self.first_name} {self.last_name}"
         self.email = f"{self.first_name.lower()}.{self.last_name.lower()}@techcorp.com"
         self.department = np.random.choice(list_department)
         self.hire_date = random_date()
+        self.seniority = np.random.choice(list_seniority)
 
-    def __repr__(self) -> list:
-        print(
-            [
-                self.id,
-                self.first_name,
-                self.last_name,
-                self.email,
-                self.department,
-                self.hire_date,
-            ]
-        )
+    def calculate_employee_tenure(self) -> timedelta:
+        """
+        method to calculate the number of years an employee has been with the company based on their hire date.
+        :return: Number of years employee has been in the compagny
+        """
+        tenure = date.today() - self.hire_date
+        return tenure.days // 365
+
+    def generate_employee_report(self) -> dict:
+        """
+        :return: dictionnary containing a report about a specific employee
+        """
+        report = {
+            "id": self.id,
+            "full name": self.full_name,
+            "email adress": self.email,
+            "department": self.department,
+            "hire date": self.hire_date,
+            "tenure (years)": employee.calculate_employee_tenure(),
+            "seniority": self.seniority,
+        }
+        return report
 
 
 if __name__ == "__main__":
     employee = Employee()
-    print(employee.email)
+    print(employee.generate_employee_report())
