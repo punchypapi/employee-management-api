@@ -10,7 +10,7 @@ def random_first_name():
     """
     # Ensure reproducibility of measurements
     with open(
-        "/Users/Oussama/employee-management-api/fake_data/first-names.txt", "r"
+        "~/employee-management-api/fake_data/first-names.txt", "r"
     ) as f:
         names = f.readlines()
         first_name = np.random.choice(names).strip()
@@ -24,7 +24,7 @@ def random_last_name() -> str:
     """
 
     with open(
-        "/Users/Oussama/employee-management-api/fake_data/last-names.txt", "r"
+        "~/employee-management-api/fake_data/last-names.txt", "r"
     ) as f:
         names = f.readlines()
         last_name = np.random.choice(names).strip()
