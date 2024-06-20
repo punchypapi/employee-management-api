@@ -26,3 +26,7 @@ class TestEmployee(unittest.TestCase):
                 self.assertEqual(
                     employee_test.calculate_senority(tenure_year), senority_expected
                 )
+
+
+if __name__ == "__main__":
+    unittest.main()
