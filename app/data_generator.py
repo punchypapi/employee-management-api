@@ -99,7 +99,7 @@ class Employee:
             "full name": self.full_name,
             "email adress": self.generate_email_adress(),
             "department": self.department,
-            "hire date": self.hire_date.strftime('%Y-%m-%d'),
+            "hire date": self.hire_date.strftime("%Y-%m-%d"),
             "tenure (years)": self.calculate_employee_tenure(),
             "seniority": self.calculate_senority(self.calculate_employee_tenure()),
         }
