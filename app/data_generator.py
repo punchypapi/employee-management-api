@@ -43,13 +43,13 @@ def random_date() -> date:
 
 
 list_department = ["HR", "IT", "SALE", "MARKETING"]
-list_seniority = ["Junior", "Confirmed", "Senior", "Director Partner"]
+list_seniority = ["Junior", "Confirmed", "Senior"]
 
 
 class Employee:
     """
     Simulate an employee in TechCorp company
-    Take an id, first name, last name, email, department, and hire date
+    Take an id, first name, last name, department, and hire date
     and create an object Employee
     """
 
@@ -58,18 +58,37 @@ class Employee:
         self.first_name = random_first_name()
         self.last_name = random_last_name()
         self.full_name = f"{self.first_name} {self.last_name}"
-        self.email = f"{self.first_name.lower()}.{self.last_name.lower()}@techcorp.com"
         self.department = np.random.choice(list_department)
         self.hire_date = random_date()
-        self.seniority = np.random.choice(list_seniority)
 
-    def calculate_employee_tenure(self) -> timedelta:
+    def generate_email_adress(self) -> str:
+        """
+        Methods that returns email adress of specific employee using his first and last name
+        :return: email adress of employee
+        """
+        email = f"{self.first_name.lower()}.{self.last_name.lower()}@techcorp.com"
+        return email
+
+    def calculate_employee_tenure(self) -> int:
         """
         method to calculate the number of years an employee has been with the company based on their hire date.
         :return: Number of years employee has been in the compagny
         """
         tenure = date.today() - self.hire_date
         return tenure.days // 365
+
+    def calculate_senority(self, tenure_year: int) -> str:
+        """
+        Method to compute a senority of employee
+        :return: senority of a specific employee
+        """
+        if tenure_year > 4:
+            return list_seniority[2]
+        else:
+            if tenure_year < 2:
+                return list_seniority[0]
+            if tenure_year > 2:
+                return list_seniority[1]
 
     def generate_employee_report(self) -> dict:
         """
@@ -78,13 +97,19 @@ class Employee:
         report = {
             "id": self.id,
             "full name": self.full_name,
-            "email adress": self.email,
+            "email adress": self.generate_email_adress(),
             "department": self.department,
             "hire date": self.hire_date,
-            "tenure (years)": employee.calculate_employee_tenure(),
-            "seniority": self.seniority,
+            "tenure (years)": self.calculate_employee_tenure(),
+            "seniority": self.calculate_senority(self.calculate_employee_tenure()),
         }
         return report
+
+    def promote_employee(self) -> None:
+        """
+        Methods that promote employees with > 10 years of tenure
+        :return: None
+        """
 
 
 if __name__ == "__main__":
