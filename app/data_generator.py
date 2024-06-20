@@ -55,7 +55,7 @@ class Employee:
     """
 
     def __init__(self) -> None:
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.first_name = random_first_name()
         self.last_name = random_last_name()
         self.full_name = f"{self.first_name} {self.last_name}"
@@ -96,11 +96,10 @@ class Employee:
         :return: dictionnary containing a report about a specific employee
         """
         report = {
-            "id": self.id,
             "full name": self.full_name,
             "email adress": self.generate_email_adress(),
             "department": self.department,
-            "hire date": self.hire_date,
+            "hire date": self.hire_date.strftime('%Y-%m-%d'),
             "tenure (years)": self.calculate_employee_tenure(),
             "seniority": self.calculate_senority(self.calculate_employee_tenure()),
         }
