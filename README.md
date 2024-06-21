@@ -44,9 +44,8 @@ uvicorn main:app --reload --port 8001
 The project directory structure is organized as follows:
 
 - **app/**: Contains the main application modules.
-  - `__init__.py`: Initializes the Python package.
+  - `__init__.py`: Initializes the Python package and Creates instances of employees using generated data.
   - `data_generator.py`: Generates fake data for employees.
-  - `create_employees.py`: Creates instances of employees using generated data.
 
 - **fake_data/**: Contains text files used for generating fake employee names.
   - `first-names.txt`
